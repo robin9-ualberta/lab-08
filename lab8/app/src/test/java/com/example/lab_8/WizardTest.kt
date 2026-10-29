@@ -45,29 +45,22 @@ class WizardTest {
 
         assertEquals(70, evilWizard.mana)
     }
-//
-//    @Test
-//    fun testTrainWithEnoughMana() {
-//        val wizard = Wizard()
-//        wizard.mana = 10
-//        wizard.spellPower = 1
-//
-//        wizard.train()
-//
-//        assertEquals(5, wizard.mana)
-//        assertEquals(2, wizard.spellPower)
-//    }
-//
-//    @Test
-//    fun testTrainWithoutEnoughMana() {
-//        val wizard = Wizard()
-//        wizard.mana = 3
-//        wizard.spellPower = 1
-//
-//        wizard.train()
-//
-//        assertEquals(3, wizard.mana)
-//        assertEquals(1, wizard.spellPower)
-//    }
 
+    @Test
+    fun train_enoughMana_spellPowerIncreasesAndManaDecreases() {
+        evilWizard.train()
+
+        assertEquals(25, evilWizard.mana) // 30 - 5 = 25
+        assertEquals(11, evilWizard.spellPower) // 10 + 1 = 11
+    }
+
+    @Test
+    fun train_notEnoughMana_nothingChanges() {
+        evilWizard.mana = 3 // Not enough mana to train
+
+        evilWizard.train()
+
+        assertEquals(3, evilWizard.mana) // mana stays at 3
+        assertEquals(10, evilWizard.spellPower) // spellPower stays at 10
+    }
 }
